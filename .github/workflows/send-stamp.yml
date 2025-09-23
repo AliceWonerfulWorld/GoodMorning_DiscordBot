@@ -1,0 +1,25 @@
+name: Send Discord Stamp
+
+on:
+  schedule:
+    # JST=UTC+9 → 09:00JST=00:00UTC, 21:00JST=12:00UTC
+    - cron: '0 0 * * *'
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send morning (06:00 JST)
+        if: ${{ github.event.schedule == '0 0 * * *' }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d '{"content":"<:gdm:1298821074183655424>"}' \
+               "${{ secrets.WEBHOOK_URL }}"
+      - name: Send night (22:00 JST)
+        if: ${{ github.event.schedule == '0 12 * * *' }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d '{"content":"<:nero:1293956236802523156>"}' \
+               "${{ secrets.WEBHOOK_URL }}"
