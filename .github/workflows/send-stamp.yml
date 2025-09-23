@@ -23,3 +23,9 @@ jobs:
           curl -H "Content-Type: application/json" \
                -d '{"content":"<:nero:1293956236802523156>"}' \
                "${{ secrets.WEBHOOK_URL }}"
+      - name: Send test (manual run)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d '{"content":"テスト送信です ✅"}' \
+               "${{ secrets.WEBHOOK_URL }}"
