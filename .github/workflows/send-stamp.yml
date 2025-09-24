@@ -25,19 +25,23 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -d '{
+                 "username": "キャプテンファルコン",
+                 "avatar_url": "https://cdn.discordapp.com/attachments/1295557128597274644/1321014249400565780/Background_Removal.png?ex=68d44424&is=68d2f2a4&hm=2019f8357042ae671f1f6a166234201e19c2df2bb1d5352a918585e3cb9ec64b",
                  "content": "ファルコン・ランチの時間だ！キャプテンファルコンがお知らせするぞ！🍽️",
                  "embeds": [{
                    "image": {
-                     "url": "https://raw.githubusercontent.com/gomaa/GoodMorning_DiscordBot/main/images/falcon-lunch.jpg"
+                     "url": "https://cdn.discordapp.com/attachments/1313666946612330576/1420258555025686669/falcon-lunch.jpeg?ex=68d4be5a&is=68d36cda&hm=385ae529c4cd6e06f1df32e796de019f296044224d56baee92183539671a1186&"
                    }
                  }]
                }' \
                "${{ secrets.WEBHOOK_URL }}"
       - name: Send afternoon (13:00 JST)
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: ${{ github.event.schedule == '0 4 * * *' }}
         run: |
           curl -H "Content-Type: application/json" \
                -d '{
+                 "username": "三島一八",
+                 "avatar_url": "https://cdn.discordapp.com/attachments/1295557128597274644/1325013092924653661/kazuya_1.png?ex=68d44fda&is=68d2fe5a&hm=b3a32368607fc28d1726a65866e88fb9e772afb27baf9869824d57c72e01f882",
                  "content": "ここが貴様の墓場だ！午後の授業が始まるぞ！💀",
                  "embeds": [{
                    "image": {
@@ -47,14 +51,16 @@ jobs:
                }' \
                "${{ secrets.WEBHOOK_URL }}"
       - name: Send afternoon end (16:30 JST)
-        if: ${{ github.event.schedule == '30 7 * * *' }}
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           curl -H "Content-Type: application/json" \
                -d '{
+                 "username": "ポチョムキン",
+                 "avatar_url": "https://cdn.discordapp.com/attachments/1313666946612330576/1420264851934023680/potemkin.jpg?ex=68d4c437&is=68d372b7&hm=77f194cb78a015f7c91221b1ce2d469aa5a22663a0975d8d33b9c100b8140dfa",
                  "content": "授業終了だ！Guilty Gearの時間だポチョ！🎮",
                  "embeds": [{
                    "image": {
-                     "url": "https://raw.githubusercontent.com/gomaa/GoodMorning_DiscordBot/main/images/potemkin-evening.jpg"
+                     "url": "https://cdn.discordapp.com/attachments/1313666946612330576/1420259143964430419/potemkin-evening.jpg?ex=68d4bee7&is=68d36d67&hm=a47378253c9455cab42adf3a979be5d62a0d213c3f189c60b6dc5428fd0b90f2&"
                    }
                  }]
                }' \
