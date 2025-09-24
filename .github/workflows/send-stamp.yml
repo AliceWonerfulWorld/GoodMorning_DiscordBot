@@ -2,8 +2,11 @@ name: Send Discord Stamp
 
 on:
   schedule:
-    # JST=UTC+9 → 06:00JST=21:00UTC, 22:00JST=13:00UTC
+    # JST=UTC+9 → 06:00JST=21:00UTC, 12:00JST=03:00UTC, 13:00JST=04:00UTC, 16:30JST=07:30UTC, 22:00JST=13:00UTC
     - cron: '0 21 * * *'
+    - cron: '0 3 * * *'
+    - cron: '0 4 * * *'
+    - cron: '30 7 * * *'
     - cron: '0 13 * * *'
   workflow_dispatch:
 
@@ -16,6 +19,45 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -d '{"content":"<:gdm:1298821074183655424>"}' \
+               "${{ secrets.WEBHOOK_URL }}"
+      - name: Send noon (12:00 JST)
+        if: ${{ github.event.schedule == '0 3 * * *' }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d '{
+                 "content": "ファルコン・ランチの時間だ！キャプテンファルコンがお知らせするぞ！🍽️",
+                 "embeds": [{
+                   "image": {
+                     "url": "https://raw.githubusercontent.com/gomaa/GoodMorning_DiscordBot/main/images/falcon-lunch.jpg"
+                   }
+                 }]
+               }' \
+               "${{ secrets.WEBHOOK_URL }}"
+      - name: Send afternoon (13:00 JST)
+        if: ${{ github.event.schedule == '0 4 * * *' }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d '{
+                 "content": "ここが貴様の墓場だ！午後の授業が始まるぞ！💀",
+                 "embeds": [{
+                   "image": {
+                     "url": "https://raw.githubusercontent.com/gomaa/GoodMorning_DiscordBot/main/images/kazuya-afternoon.jpg"
+                   }
+                 }]
+               }' \
+               "${{ secrets.WEBHOOK_URL }}"
+      - name: Send afternoon end (16:30 JST)
+        if: ${{ github.event.schedule == '30 7 * * *' }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d '{
+                 "content": "授業終了だ！Guilty Gearの時間だポチョ！🎮",
+                 "embeds": [{
+                   "image": {
+                     "url": "https://raw.githubusercontent.com/gomaa/GoodMorning_DiscordBot/main/images/potemkin-evening.jpg"
+                   }
+                 }]
+               }' \
                "${{ secrets.WEBHOOK_URL }}"
       - name: Send night (22:00 JST)
         if: ${{ github.event.schedule == '0 13 * * *' }}
