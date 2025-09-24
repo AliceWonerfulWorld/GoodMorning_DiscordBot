@@ -51,7 +51,7 @@ jobs:
                }' \
                "${{ secrets.WEBHOOK_URL }}"
       - name: Send afternoon end (16:30 JST)
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: ${{ github.event.schedule == '30 7 * * *' }}
         run: |
           curl -H "Content-Type: application/json" \
                -d '{
