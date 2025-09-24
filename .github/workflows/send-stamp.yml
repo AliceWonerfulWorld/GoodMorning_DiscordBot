@@ -41,7 +41,7 @@ jobs:
                  "content": "ここが貴様の墓場だ！午後の授業が始まるぞ！💀",
                  "embeds": [{
                    "image": {
-                     "url": "https://raw.githubusercontent.com/gomaa/GoodMorning_DiscordBot/main/images/kazuya-afternoon.jpg"
+                     "url": "https://cdn.discordapp.com/attachments/1313666946612330576/1420257554180870144/kazuya-afternoon.jpg?ex=68d4bd6c&is=68d36bec&hm=24dda7d1e77ed73fb221b61e9e2aab337782f74bb8d79bcd182809b8b3862393&"
                    }
                  }]
                }' \
